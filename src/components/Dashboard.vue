@@ -90,7 +90,7 @@
         const res = await req.json()
 
             // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando for removido.
-      this.msg = `Pedido removido com sucesso!`;
+       this.msg = `Pedido removido com sucesso!`;
 
       // limpar mensagem
       setTimeout(() => (this.msg = ""), 3000);
@@ -104,13 +104,19 @@
 
         const dataJson = JSON.stringify({status: option});
 
-        const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+        const req = await fetch(`https://projetointegrado-backend-server.onrender.com/burgers/${id}`, {
           method: "PATCH",
           headers: { "Content-Type" : "application/json" },
           body: dataJson
         });
 
         const res = await req.json()
+
+         // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando for atualizado.
+      this.msg = `O pedido Nº ${res.id} foi atualizado para ${res.status}  !`;
+
+      // limpar mensagem
+      setTimeout(() => (this.msg = ""), 3000);
 
         console.log(res)
 
@@ -122,6 +128,10 @@
   }
 </script>
 
+<!-- Vai ser usado "style scoped": Quando uma <style> possui o scoped atributo, 
+  seu CSS será aplicado apenas aos elementos do componente atual.
+=> link: https://vue-loader.vuejs.org/guide/scoped-css.html.
+ -->
 <style scoped>
   #burger-table {
     max-width: 1200px;

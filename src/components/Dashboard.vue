@@ -64,7 +64,7 @@
       const req = await fetch(`https://projetointegrado-backend-server.onrender.com/burgers/${id}`, {
         method: "GET",
       });
-
+    // eslint-disable-next-line no-unused-vars
       const res = await req.json();
 
       this.getPedidos();

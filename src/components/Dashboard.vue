@@ -72,7 +72,7 @@
 
       },
           // Vai listar Pedidos dos burgers por ID
-    async getBurger(id) {
+      async getBurger(id) {
       const req = await fetch(`https://projetointegrado-backend-server.onrender.com/burgers/${id}`, {
         method: "GET",
       });

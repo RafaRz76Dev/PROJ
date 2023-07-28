@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 <template>
   <div id="burger-table" v-if="burgers">
 

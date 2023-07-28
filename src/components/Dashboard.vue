@@ -49,8 +49,11 @@
         burgers: null,
         burger_id: null,
         status: []
+          msg: null,
       }
     },
+
+      // APIS Requisições back-end
     methods: {
       async getPedidos() {
         const req = await fetch('https://projetointegrado-backend-server.onrender.com/burgers')

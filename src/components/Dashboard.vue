@@ -49,7 +49,7 @@
     },
     methods: {
       async getPedidos() {
-        const req = await fetch('http://localhost:3000/burgers')
+        const req = await fetch('https://projetointegrado-backend-server.onrender.com/burgers')
 
         const data = await req.json()
 
@@ -61,7 +61,7 @@
       },
       async getStatus() {
 
-        const req = await fetch('http://localhost:3000/status')
+        const req = await fetch('https://projetointegrado-backend-server.onrender.com/status')
 
         const data = await req.json()
 

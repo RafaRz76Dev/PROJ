@@ -1,52 +1,47 @@
 <template>
   <div>
-    <div id="nav">
-      <router-link id="logo-url" to="/">
-        <img id="logo" :src="logo" :alt="alt">
-      </router-link>
-      <router-link to="/">Fazer Pedido</router-link>
-      <router-link to="/pedidos">Pedidos</router-link>
+    <Navbar :logo="logo_src" :alt="app_name" />
+    <div>
+      <router-view></router-view>
     </div>
+    <Footer />
   </div>
 </template>
-
 <script>
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "Navbar",
-  props: ["logo", "alt"]
+  data: function() {
+    return {
+      logo_src: "/img/giphy.gif",
+      app_name: "Make Your Burger"
+    }
+  },
+  components: {
+    Navbar,
+    Footer
+  }
 }
 </script>
 
-<style scoped>
-  #nav {
-    background-color: #222;
-    border-bottom: 4px solid #111;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+<style>
+  * {
+    font-family: Helvetica;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
   }
 
-  #nav #logo-url {
-    margin: auto;
-    margin-left: 0;
+  .main-container {
+    margin: 50px;
+    min-height: 250px;
   }
 
-  #logo {
-    width: 40px;
-    height: 40px;
-  }
-
-  #nav a {
-    color: #fcba03;
-    text-decoration: none;
-    margin: 12px;
-    transition: .5s;
-  }
-
-  #nav a:hover {
-    color: #FFF;
+  h1 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 30px;
+    color: #222;
   }
 </style>

@@ -82,12 +82,18 @@
       },
       async deleteBurger(id) {
 
-        const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+        const req = await fetch(`https://projetointegrado-backend-server.onrender.com/burgers/${id}`, {
           method: "DELETE"
         });
 
         // eslint-disable-next-line no-unused-vars
         const res = await req.json()
+
+            // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando for removido.
+      this.msg = `Pedido removido com sucesso!`;
+
+      // limpar mensagem
+      setTimeout(() => (this.msg = ""), 3000);
 
         this.getPedidos()
 

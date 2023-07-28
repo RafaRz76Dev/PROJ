@@ -42,7 +42,6 @@
 </template>
 <script>
   export default {
-    // eslint-disable-next-line vue/multi-word-component-names
     name: "Dashboard",
     data() {
       return {
@@ -92,8 +91,7 @@
         const req = await fetch(`https://projetointegrado-backend-server.onrender.com/burgers/${id}`, {
           method: "DELETE"
         });
-
-       // eslint-disable-next-line 
+      
         const res = await req.json()
 
         // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando for removido.

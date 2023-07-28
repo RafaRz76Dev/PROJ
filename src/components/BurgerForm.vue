@@ -1,4 +1,6 @@
+<!-- Importar o Message.vue -->
 <template>
+      <!-- Enviar uma mensagem: "msg"-->
   <Message :msg="msg" v-show="msg" />
   <div>
     <form id="burger-form" method="POST" @submit="createBurger">
@@ -37,13 +39,17 @@
 <script>
 import Message from './Message'
 
+  // Exportar os dados
 export default {
   name: "BurgerForm",
   data() {
     return {
+       //Dados do servidor
       paes: null,
       carnes: null,
       opcionaisdata: null,
+
+        //Dados enviados do formulários
       nome: null,
       pao: null,
       carne: null,
@@ -52,15 +58,19 @@ export default {
       msg: null
     }
   },
+    // APIS Requisições back-end
   methods: {
+       //listar os dados ingredientes
     async getIngredientes() {
-      const req = await fetch('http://localhost:3000/ingredientes')
+      const req = await fetch("https://projetointegrado-backend-server.onrender.com/ingredientes")
       const data = await req.json()
 
       this.paes = data.paes
       this.carnes = data.carnes
       this.opcionaisdata = data.opcionais
     },
+
+      //Criar o pedido do burger do formulário
     async createBurger(e) {
 
       e.preventDefault()
@@ -69,11 +79,11 @@ export default {
         nome: this.nome,
         carne: this.carne,
         pao: this.pao,
-        opcionais: Array.from(this.opcionais),
+        opcionais: Array.from(this.opcionais), // Criar array em opcionais
         status: "Solicitado"
       }
 
-      const dataJson = JSON.stringify(data)    
+      const dataJson = JSON.stringify(data)   // Enviar como texto ao servidor
 
       const req = await fetch("http://localhost:3000/burgers", {
         method: "POST",
@@ -85,12 +95,13 @@ export default {
 
       console.log(res)
 
+      // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando realizar o pedido.
       this.msg = "Pedido realizado com sucesso!"
 
-      // clear message
+      // limpar mensagem
       setTimeout(() => this.msg = "", 3000)
 
-      // limpar campos
+    // limpar campos após a execução do pedido no formulário
       this.nome = ""
       this.carne = ""
       this.pao = ""
@@ -107,6 +118,10 @@ export default {
 }
 </script>
 
+<!-- Vai ser usado "style scoped": Quando uma <style> possui o scoped atributo, 
+  seu CSS será aplicado apenas aos elementos do componente atual.
+=> link: https://vue-loader.vuejs.org/guide/scoped-css.html.
+ -->
 <style scoped>
   #burger-form {
     max-width: 400px;
@@ -124,7 +139,7 @@ export default {
     margin-bottom: 15px;
     color: #222;;
     padding: 5px 10px;
-    border-left: 4px solid #fcba03;
+    border-left: 4px solid #fcba03; /* Criando bordas para dar um destaque na lateral do "burgerform"*/
   }
 
   input, select {

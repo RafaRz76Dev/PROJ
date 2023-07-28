@@ -1,5 +1,9 @@
 <template>
   <div id="burger-table" v-if="burgers">
+
+      <!-- Enviar uma mensagem: "msg"-->
+    <Message :msg="msg" v-show="msg" />
+    
     <div>
       <div id="burger-table-heading">
         <div class="order-id">#:</div>
@@ -42,14 +46,17 @@
     name: "Dashboard",
     data() {
       return {
+            //Dados após a realização do pedido
         burgers: null,
         burger_id: null,
         status: []
       }
     },
+
+      // APIS Requisições back-end
     methods: {
       async getPedidos() {
-        const req = await fetch('http://localhost:3000/burgers')
+        const req = await fetch('https://projetointegrado-backend-server.onrender.com/burgers')
 
         const data = await req.json()
 
@@ -59,9 +66,21 @@
         this.getStatus()
 
       },
+
+         // Vai listar Pedidos dos burgers por ID
+    async getBurger(id) {
+      const req = await fetch(`https://projetointegrado-backend-server.onrender.com/burgers/${id}`, {
+        method: "GET",
+      });
+           const res = await req.json();
+
+      this.getPedidos();
+    },
+
+      // listar Status      
       async getStatus() {
 
-        const req = await fetch('http://localhost:3000/status')
+        const req = await fetch('https://projetointegrado-backend-server.onrender.com/status')
 
         const data = await req.json()
 
@@ -70,23 +89,31 @@
       },
       async deleteBurger(id) {
 
-        const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+        const req = await fetch(`https://projetointegrado-backend-server.onrender.com/burgers/${id}`, {
           method: "DELETE"
         });
 
         // eslint-disable-next-line no-unused-vars
         const res = await req.json()
 
+        // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando for removido.
+      this.msg = `Pedido removido com sucesso!`;
+
+      // limpar mensagem
+      setTimeout(() => (this.msg = ""), 3000);
+
         this.getPedidos()
 
       },
+      
+       //atualizar os pedidos do burgers
       async updateBurger(event, id) {
 
-        const option = event.target.value;
+        const option = event.target.value; // Para saber o status de quem gerenciar os pedidos
 
-        const dataJson = JSON.stringify({status: option});
+        const dataJson = JSON.stringify({status: option}); //Para atualizar no banco do json-server
 
-        const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+        const req = await fetch(`https://projetointegrado-backend-server.onrender.com/burgers/${id}`, {
           method: "PATCH",
           headers: { "Content-Type" : "application/json" },
           body: dataJson
@@ -94,8 +121,13 @@
 
         const res = await req.json()
 
-        console.log(res)
+         // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando for atualizado.
+      this.msg = `O pedido Nº ${res.id} foi atualizado para ${res.status}  !`;
 
+      // limpar mensagem
+      setTimeout(() => (this.msg = ""), 3000);
+
+        console.log(res)
       }
     },
     mounted () {
@@ -104,6 +136,10 @@
   }
 </script>
 
+<!-- Vai ser usado "style scoped": Quando uma <style> possui o scoped atributo, 
+  seu CSS será aplicado apenas aos elementos do componente atual.
+=> link: https://vue-loader.vuejs.org/guide/scoped-css.html.
+ -->
 <style scoped>
   #burger-table {
     max-width: 1200px;

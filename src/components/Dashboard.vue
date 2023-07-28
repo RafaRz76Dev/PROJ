@@ -50,8 +50,8 @@
       return {
         burgers: null,
         burger_id: null,
-        status: []
-          msg: null,
+        status: [],
+        msg: null,
       }
     },
       components: {
@@ -102,7 +102,7 @@
         const res = await req.json()
 
             // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando for removido.
-       this.msg = `Pedido removido com sucesso!`;
+        this.msg = `Pedido removido com sucesso!`;
 
       // limpar mensagem
       setTimeout(() => (this.msg = ""), 3000);

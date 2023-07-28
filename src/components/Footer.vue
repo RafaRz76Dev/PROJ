@@ -1,6 +1,10 @@
 <template>
   <div id="footer">
-    <p>Make Your Burger &copy; 2021</p>
+    <p>
+      Copyright 2023
+      <a href="https://portifolio-rafarz76dev.netlify.app/">RafaRz76Dev</a> All
+      Rights Reserved
+    </p>
   </div>
 </template>
 

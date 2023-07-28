@@ -1,5 +1,9 @@
 <template>
   <div id="burger-table" v-if="burgers">
+
+      <!-- Enviar uma mensagem: "msg"-->
+    <Message :msg="msg" v-show="msg" />
+    
     <div>
       <div id="burger-table-heading">
         <div class="order-id">#:</div>

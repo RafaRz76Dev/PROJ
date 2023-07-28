@@ -14,7 +14,7 @@ import Footer from './components/Footer'
 export default {
   data: function() {
     return {
-      logo_src: "/img/logo.png",
+      logo_src: "/img/giphy.gif",
       app_name: "Make Your Burger"
     }
   },

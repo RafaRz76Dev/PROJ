@@ -93,7 +93,7 @@
           method: "DELETE"
         });
 
-        // eslint-disable-next-line no-unused-vars
+       // eslint-disable-next-line 
         const res = await req.json()
 
         // Condicionando o aparecimento da mensagem a inserção do hambúrguer quando for removido.

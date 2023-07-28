@@ -85,7 +85,7 @@ export default {
 
       const dataJson = JSON.stringify(data)   // Enviar como texto ao servidor
 
-      const req = await fetch("http://localhost:3000/burgers", {
+      const req = await fetch("https://projetointegrado-backend-server.onrender.com/burgers", {
         method: "POST",
         headers: { "Content-Type" : "application/json" },
         body: dataJson

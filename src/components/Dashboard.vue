@@ -52,6 +52,9 @@
           msg: null,
       }
     },
+      components: {
+    Message,
+  },
 
       // APIS Requisições back-end
     methods: {
